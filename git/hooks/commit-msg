@@ -25,8 +25,8 @@ fi
 # Add project version if branch is DEV or MASTER
 VERSION_BRANCHES=("dev", "master")
 
-PROJECT_VERSION=$(gradle properties | grep ^version | cut -c 10-)
 if [[ "${VERSION_BRANCHES[@]}" =~ "$BRANCH_NAME" ]]; then
+  PROJECT_VERSION=$(gradle properties | grep ^version | cut -c 10-)
   echo "[$PROJECT_VERSION]" >> "$1"
 fi
 
