@@ -1,0 +1,39 @@
+#!/bin/sh
+
+BRANCH_NAME=$(git branch | grep '^\*' |  cut -c 3-)
+BRANCH_NAME_FORMATTED=$(echo $BRANCH_NAME | cut -d '/' -f2 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//') 
+BRANCH_DESCR=$(git config branch."$NAME".description)
+COMMIT_MSG=$(cat "$1")
+
+# Automatically adds branch name and branch description to every commit message.
+# Add branch name if branch dont have /
+ADD_NON_FEATURE_BRANCHES=false
+
+if [ $BRANCH_NAME =~ "/" ]; then
+  echo "[$BRANCH_NAME_FORMATTED]" > "$1"
+elif [ "$ADD_NON_FEATURE_BRANCHES" = true ]; then
+  echo "[$BRANCH_NAME_FORMATTED]" > "$1"
+else
+  echo "" > "$1"
+fi
+
+
+ADD_BRANCH_DESCR=false
+
+if [ -n "$BRANCH_DESCR" ] && [ "$ADD_BRANCH_DESCR" = true ] ; then 
+  echo "[$BRANCH_DESCR]" >> "$1"
+fi 
+
+
+# Add project version if branch is DEV or MASTER
+VERSION_BRANCHES=("dev", "master")
+
+PROJECT_VERSION=$(gradle properties | grep ^version | cut -c 10-)
+if [ "${VERSION_BRANCHES[@]}" =~ "$BRANCH_NAME" ]; then
+  echo "[$PROJECT_VERSION]" > "$1"
+else
+  echo "" > "$1"
+fi
+
+
+echo "$COMMIT_MSG" >> "$1"
