@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOOK_PROVIDER_PROJECT=dummymaker
+HOOK_PROVIDER_PROJECT=unix-setup
 
 HOOKS=$(find ./${HOOK_PROVIDER_PROJECT}/.git/hooks -type f | grep -v .sample)
 
