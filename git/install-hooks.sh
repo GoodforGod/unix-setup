@@ -4,7 +4,7 @@ HOOK_PROVIDER_PROJECT=unix-setup
 
 HOOKS=$(find ./${HOOK_PROVIDER_PROJECT}/.git/hooks -type f | grep -v .sample)
 
-HOOK_CANDIDATES=$(find . -path *.git/hooks | grep -v idm/.git)
+HOOK_CANDIDATES=$(find . -path *.git/hooks)
 
 for candidate in $HOOK_CANDIDATES
 do
