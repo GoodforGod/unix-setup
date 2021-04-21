@@ -9,13 +9,8 @@ alias l='ls -ghCF'
 alias l1='ls -1F'
 
 # cd aliases
-alias cddoc='cd /mnt/c/yandexDisk/documents/'
-alias cdproj='cd /mnt/c/Users/goodf/IdeaProjects/'
-alias cddesk='cd /mnt/c/Users/goodf/OneDrive/Desktop/'
-
-# SSH hosts
-alias sshkuat='ssh -i ~/.ssh/luke luke@137.74.114.219 -p 671'
-alias sshvk='ssh -i ~/.ssh/vk root@95.213.28.151'
+alias cdproj='cd /mnt/c/Users/{USER_NAME}/IdeaProjects/'
+alias cddesk='cd /mnt/c/Users/{USER_NAME}/OneDrive/Desktop/'
 
 # DOCKER
 alias doc='docker.exe'
