@@ -27,7 +27,7 @@ VERSION_BRANCHES=("dev", "master")
 
 if [[ "${VERSION_BRANCHES[@]}" =~ "$BRANCH_NAME" ]]; then
   PROJECT_VERSION=$(gradle --no-daemon properties | grep ^version | cut -c 10-)
-  if [[ "$PROJECT_VERSION" != "unspecified" ]]; then
+  if [[ "$PROJECT_VERSION" != "unspecified" && ! -z "$PROJECT_VERSION" ]]; then
     echo "[$PROJECT_VERSION]" >> "$1"
   fi
 fi
